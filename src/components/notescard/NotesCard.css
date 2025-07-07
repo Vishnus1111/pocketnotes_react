@@ -1,0 +1,23 @@
+.note-card {
+  background-color: #f1f1f1;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  width: fit-content;
+  max-width: 80%;
+  align-self: flex-start; /* You can change to flex-end for right-aligned */
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+.note-text {
+  font-size: 15px;
+  color: #333;
+  margin: 0 0 6px 0;
+  word-wrap: break-word;
+}
+
+.note-time {
+  font-size: 12px;
+  color: gray;
+  text-align: right;
+}
