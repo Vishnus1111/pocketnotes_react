@@ -5,6 +5,7 @@
   border-right: 1px solid #ccc;
   display: flex;
   flex-direction: column;
+  position: relative; 
 }
 
 .group-name {
@@ -23,26 +24,18 @@
 }
 
 .sidebar-footer {
-  padding: 0 20px 20px 20px;
-  /* top, right, bottom, left */
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: transparent; /* ✅ removes grey strip */
   display: flex;
   justify-content: flex-end;
-  /* push button to the right */
-}
-
-.plus-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  width: 70px;
-  /* adjust as needed */
-  height: 110px;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  height: auto;
 }
-
 
 .group-list {
   flex: 1;
@@ -74,6 +67,18 @@
   font-weight: bold;
 }
 
+.plus-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
@@ -82,6 +87,8 @@
     overflow-x: scroll;
     border-right: none;
     border-bottom: 1px solid #ccc;
+    display: block;
+    position: relative;
   }
 
   .sidebar-header {
@@ -100,7 +107,17 @@
     padding: 8px;
   }
 
-  .sidebar-footer {
-    display: none;
-  }
+  .sidebar.mobile-visible .sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.sidebar.mobile-visible .sidebar-footer {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  position: fixed;
+}
 }

@@ -6,11 +6,11 @@ import plusBtn from "../../assests/plus-btn.png";
 
 
 const Sidebar = () => {
-  const { groups, setSelectedGroup } = useContext(NotesContext);
+  const { groups, setSelectedGroup, selectedGroup } = useContext(NotesContext);
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${!selectedGroup ? "mobile-visible" : "hidden"}`}>
       {/* Sidebar header */}
       <div className="sidebar-header">
         <h2>Pocket Notes</h2>
@@ -35,12 +35,14 @@ const Sidebar = () => {
         ))}
       </div>
 
-      {/* Plus Button at the bottom */}
+      {showModal && <CreateGroupModal onClose={() => setShowModal(false)} />}
+
       <div className="sidebar-footer">
         <button className="plus-button" onClick={() => setShowModal(true)}>
           <img src={plusBtn} alt="Add" />
         </button>
       </div>
+
 
       {showModal && <CreateGroupModal onClose={() => setShowModal(false)} />}
     </div>
