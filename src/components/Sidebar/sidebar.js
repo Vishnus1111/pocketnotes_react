@@ -5,8 +5,10 @@ import "./Sidebar.css";
 import plusBtn from "../../assests/plus-btn.png";
 
 
+
+
 const Sidebar = () => {
-  const { groups, setSelectedGroup, selectedGroup } = useContext(NotesContext);
+  const { groups, setSelectedGroup, selectedGroup, selectedGroupIndex, setSelectedGroupIndex } = useContext(NotesContext);
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -21,8 +23,8 @@ const Sidebar = () => {
         {groups.map((group, index) => (
           <div
             key={index}
-            className="group-item"
-            onClick={() => setSelectedGroup(group.name)}
+            className={`group-item ${selectedGroupIndex === index ? 'active' : ''}`}
+            onClick={() => { setSelectedGroup(group.name); setSelectedGroupIndex(index); }}
           >
             <div
               className="group-circle"
@@ -49,10 +51,18 @@ const Sidebar = () => {
   );
 };
 
-const getInitials = (name) =>
-  name
-    .split(" ")
-    .map((n) => n[0].toUpperCase())
-    .join("");
+const getInitials = (name) => {
+  if (!name) return "";
+  const parts = name
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (parts.length === 0) return "";
+  if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+
+  // Use only the first letters of the first two words
+  return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+};
 
 export default Sidebar;

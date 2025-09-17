@@ -25,8 +25,11 @@
 .modal-box h3 {
   font-size: 20px;
   font-weight: 600;
-  text-align: center;
   margin: 0;
+}
+
+.modal-title-left {
+  text-align: left;
 }
 
 .modal-box input[type="text"] {
@@ -91,7 +94,7 @@
 
 @media (max-width: 768px) {
   .modal-box {
-    width: 90%;
+    width: 75%; /* reduced by ~15% from prior 90% only on mobile */
     padding: 20px;
   }
 

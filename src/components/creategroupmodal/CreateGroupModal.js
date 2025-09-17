@@ -23,10 +23,16 @@ const CreateGroupModal = ({ onClose }) => {
     onClose();
   };
 
+  const handleBackdropClick = (e) => {
+    if (e.target.classList.contains('modal-backdrop')) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="modal-backdrop">
+    <div className="modal-backdrop" onClick={handleBackdropClick}>
       <div className="modal-box">
-        <h3>Create New Group</h3>
+        <h3 className="modal-title-left">Create New Group</h3>
         <input
           type="text"
           value={name}
@@ -49,7 +55,6 @@ const CreateGroupModal = ({ onClose }) => {
         </div>
 
         <div className="modal-actions">
-          <button onClick={onClose}>Cancel</button>
           <button onClick={handleCreate}>Create</button>
         </div>
       </div>

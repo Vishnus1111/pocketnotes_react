@@ -9,10 +9,10 @@
 }
 
 .group-name {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 26px;
+  font-weight: 900;
   font-family: 'Inter', sans-serif;
-  color: #000000;
+  color: #000000; /* enforce black text */
 }
 
 
@@ -25,7 +25,7 @@
 
 .sidebar-footer {
   position: absolute;
-  bottom: 20px;
+  bottom: 45px; /* moved up by 25px */
   right: 20px;
   background: transparent; /* ✅ removes grey strip */
   display: flex;
@@ -40,10 +40,19 @@
 .group-list {
   flex: 1;
   overflow-y: auto;
+  /* Hide scrollbar but allow scroll */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.group-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .group-item {
@@ -52,7 +61,16 @@
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  padding: 10px 0;
+  padding: 10px 12px; /* consistent padding to avoid shift */
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 6px; /* keep shape reserved */
+}
+
+/* Reserve background area without shifting on hover/active */
+.group-item:hover,
+.group-item.active {
+  background-color: #dcdcdc;
 }
 
 
@@ -71,12 +89,18 @@
   background: none;
   border: none;
   cursor: pointer;
-  width: 60px;
-  height: 60px;
+  width: 54px; /* 10% smaller */
+  height: 54px; /* 10% smaller */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+}
+
+.plus-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: 768px) {
@@ -118,6 +142,7 @@
   display: flex;
   justify-content: center;
   padding: 12px;
-  position: fixed;
+    position: fixed;
+    bottom: 45px; /* keep consistent offset on mobile */
 }
 }

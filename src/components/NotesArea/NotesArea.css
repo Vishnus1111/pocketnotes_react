@@ -1,6 +1,6 @@
 .notes-area {
   flex: 1;
-  background-color: #f7f8fa;
+  background-color: #dae5f5; /* Set requested background */
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
 .notes-header {
   background-color: #001F8B;
   color: white;
-  padding: 10px 16px;
+  padding: 12.5px 16px; /* +~5px taller header */
   display: flex;
   align-items: center;
   gap: 12px;
@@ -40,13 +40,36 @@
   cursor: pointer;
 }
 
+/* Hide back button on wider screens (desktop/tablet landscape) */
+@media (min-width: 769px) {
+  .back-button { display: none; }
+}
+
+/* Slightly larger touch target on very small devices */
+@media (max-width: 480px) {
+  .back-button {
+    font-size: 24px;
+    padding: 4px 8px;
+    margin-left: -4px; /* pull closer to edge */
+  }
+}
+
 .notes-list {
   flex: 1;
-  overflow-y: auto;
+  overflow-y: auto; /* allow vertical scroll */
+  /* Hide scrollbar but keep scroll functional */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.notes-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .note-card {
@@ -57,39 +80,71 @@
 }
 
 .note-content {
-  font-size: 14px;
+  font-family: 'Roboto', 'Inter', sans-serif;
+  font-size: 18px;
+  color: #000000;
   margin-bottom: 10px;
 }
 
 .note-date {
-  font-size: 12px;
-  color: #666;
+  font-family: 'Roboto', 'Inter', sans-serif;
+  font-size: 18px;
+  color: #353535; /* as requested */
   text-align: right;
+  font-weight: 400;
 }
 
 .note-footer {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   background-color: #001F8B;
-  padding: 10px;
-  gap: 8px;
+  padding: 18px 24px;
+  gap: 0;
+  margin: 0;             /* flush with bottom */
+  margin-top: auto;       /* push footer to bottom of flex column */
 }
 
-.note-footer textarea {
+.input-wrapper {
+  position: relative;
   flex: 1;
-  padding: 10px 14px;
+  display: flex;
+}
+
+.input-wrapper textarea {
+  flex: 1;
+  padding: 18px 64px 28px 20px; /* extra bottom space for relocated button */
   border: none;
-  border-radius: 6px;
+  border-radius: 12px;
   resize: none;
-  font-family: inherit;
-  font-size: 14px;
+  font-family: 'Roboto','Inter',sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  min-height: 84px;
   outline: none;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
 }
 
 .send-button {
+  position: absolute;
+  right: 16px;
+  bottom: 12px; /* anchor to bottom instead of center */
   background: none;
   border: none;
-  color: white;
-  font-size: 20px;
+  padding: 2px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-button img {
+  width: 28px; /* 10% smaller */
+  height: 28px;
+  display: block;
+}
+
+.send-button:disabled {
+  cursor: default;
+  opacity: 0.6;
 }

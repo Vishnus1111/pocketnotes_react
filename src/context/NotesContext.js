@@ -14,6 +14,7 @@ export const NotesProvider = ({ children }) => {
     });
 
     const [selectedGroup, setSelectedGroup] = useState(null);
+    const [selectedGroupIndex, setSelectedGroupIndex] = useState(null);
 
     useEffect(() => {
         localStorage.setItem("pocket-notes-groups", JSON.stringify(groups));
@@ -31,7 +32,9 @@ export const NotesProvider = ({ children }) => {
                 notes,
                 setNotes,
                 selectedGroup,
-                setSelectedGroup
+                setSelectedGroup,
+                selectedGroupIndex,
+                setSelectedGroupIndex
             }}
         >
             {children}
